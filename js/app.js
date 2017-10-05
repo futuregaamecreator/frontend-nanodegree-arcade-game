@@ -1,12 +1,5 @@
-//Choose Character
-<button onclick="chooseCharacter()"> Choose Character</button>
-
-function chooseCharacter(){
-var character;
-if (boy)
-  
-}
-
+// Creating lives
+var lives = 5;
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -41,6 +34,10 @@ Enemy.prototype.update = function(dt) {
         30 + player.y > this.y) {
         player.x = 200;
         player.y = 380;
+        player.lives = player.lives - 1;
+        $("#lifeLeft").text(player.lives);
+        console.log('lives: ' + player.lives);
+        player.reset();
     }
 };
 
@@ -56,8 +53,22 @@ var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.lives = 5;
     this.sprite = 'images/char-boy.png';
 };
+
+Player.prototype.reset = function() {
+    this.x = 205;
+    this.y = 400;
+
+    if(this.lives === 0){
+        playGameOver();
+        // change body background to red
+        replay = true;
+        //and when they click game resets to beginning
+        gameOn=false;
+    }
+
 
 Player.prototype.update = function() {
     // Prevent player from moving beyond canvas wall boundaries
@@ -105,7 +116,7 @@ Player.prototype.handleInput = function(keyPress) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [];
+var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 // Position "y" where the enemies will are created
 var enemyPosition = [60, 140, 220];
