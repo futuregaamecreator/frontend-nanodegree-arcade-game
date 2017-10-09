@@ -1,3 +1,8 @@
+//character Selection
+function CharacterSelect() {
+    var startMenu = window.open("", "MsgWindow", "width=200,height=100");
+    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+}
 // Sets an initial player score of 0.
 var score = 0;
 document.getElementById('playerScore').innerHTML = score;
@@ -29,7 +34,7 @@ Enemy.prototype.update = function(dt) {
         this.speed = 100 + Math.floor(Math.random() * 512);
     }
 
-    // Check for collision between player and enemies
+    // Check for collision between player and enemies and if player collides with enemy game over
     if (player.x < this.x + 60 &&
         player.x + 37 > this.x &&
         player.y < this.y + 25 &&
@@ -76,7 +81,7 @@ Player.prototype.update = function() {
         score++;
       	document.getElementById('playerScore').innerHTML = score;
       	this.reset();
-        
+
     }
 };
 
