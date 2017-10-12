@@ -1,3 +1,6 @@
+// Whole-script strict mode syntax
+'use strict';
+
 // Sets an initial player score of 0.
 var score = 0;
 document.getElementById('playerScore').innerHTML = score;
